@@ -1,0 +1,44 @@
+[
+    {
+        "id_orden": "1",
+        "cliente": "cochi",
+        "fecha": "22-02-2022",
+        "fecha2": "22-03-2022",
+        "descripcion": "rotulo lona",
+        "medidas": "1m x 1.30m",
+        "cantidad": "1",
+        "diseñador": "oliver",
+        "impresora": "azul",
+        "obcervaciones": "ojetes solo en las esquinas",
+        "precio": "13000",
+        "estado": "entregada"
+    },
+    {
+        "id_orden": "2",
+        "cliente": "cochi",
+        "fecha": "15-04-2024",
+        "fecha2": "18-04-2024",
+        "descripcion": "calcamonias",
+        "medidas": "20x20",
+        "cantidad": "3",
+        "diseñador": "alejandra",
+        "impresora": "azul",
+        "obcervaciones": "3 numeros 20",
+        "precio": "6000",
+        "estado": "entregada"
+    },
+    {
+        "id_orden": "3",
+        "cliente": "jose",
+        "fecha": "26-05-2025",
+        "fecha2": "2-06-2025",
+        "descripcion": "etiquetas",
+        "medidas": "20x15",
+        "cantidad": "300",
+        "diseñador": "ale",
+        "impresora": "azul",
+        "obcervaciones": "troqueladas",
+        "precio": "15000",
+        "estado": "entregado"
+    }
+]
