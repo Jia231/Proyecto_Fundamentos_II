@@ -5,7 +5,7 @@
 #Version: 1.0
 
 from mod_menu import menu, crear_orden_trabajo, consultar_orden_trabajo, modificar_orden_trabajo, eliminar_orden_trabajo
-import interfase
+# import interface
 import tkinter as tk
 
 
@@ -16,7 +16,8 @@ if __name__ == "__main__":
     # Elige entre interfaz gráfica o menú de consola
     modo = input("Selecciona modo (1: Interfaz gráfica, 2: Consola): ")
     if modo == "1":
-        interfase.interfaz()
+        # interfase.interfaz()
+        pass
     elif modo == "2":
         menu_principal = True
         while menu_principal:
