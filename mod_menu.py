@@ -1,6 +1,8 @@
 # Modulos de Funciones
 import json
 import os
+import datetime
+from orden import Orden
 
 # Definir el nombre del archivo JSON
 ARCHIVO_ORDENES = "ordenes_trabajo.json"
@@ -39,31 +41,33 @@ def crear_orden_trabajo():
     print(f"ID de la nueva orden de trabajo: {id_orden}")
     cliente = input("Ingrese el nombre del cliente: ")
     fecha = input("Ingrese la fecha de creación (DD-MM-AAAA): ")
-    fecha2 = input("Ingrese la fecha de entrega (DD-MM-AAAA): ")
+    fecha_entrega = input("Ingrese la fecha de entrega (DD-MM-AAAA): ")
     descripcion = input("Tipo de Producto: ")
     medidas = input("Medidas: ")
     cantidad = input("Cantidad: ")
     diseñador = input("Nombre del diseñador: ")
     impresora = input("Nombre de la impresora: ")
-    obcervaciones = input("Observaciones: ")
-    precio= input("Precio: ")
-    estado = input("Ingrese el estado de la orden (Pendiente/Completada/Entregada): ")
-    nueva_orden = {
-        "id_orden": id_orden,
-        "cliente": cliente,
-        "fecha": fecha,
-        "fecha2": fecha2,
-        "descripcion": descripcion,
-        "medidas": medidas,
-        "cantidad": cantidad,
-        "diseñador": diseñador,
-        "impresora": impresora,
-        "obcervaciones": obcervaciones,
-        "precio": precio,
-        "estado": estado      
+    observaciones = input("Observaciones: ")
+    precio= float(input("Precio: "))
+    # estado = input("Ingrese el estado de la orden (Pendiente/Completada/Entregada): ")
+    # nueva_orden = {
+    #     "id_orden": id_orden,
+    #     "cliente": cliente,
+    #     "fecha": fecha,
+    #     "fecha_entrega": fecha_entrega,
+    #     "descripcion": descripcion,
+    #     "medidas": medidas,
+    #     "cantidad": cantidad,
+    #     "diseñador": diseñador,
+    #     "impresora": impresora,
+    #     "observaciones": observaciones,
+    #     "precio": precio,
+    #     "estado": estado      
        
-    }
-    guardar_orden.append(nueva_orden)
+    # }
+    nueva_orden = Orden(id_orden, cliente, fecha, fecha_entrega, descripcion, medidas, 
+                    cantidad, diseñador, impresora, observaciones, precio)
+    guardar_orden.append(nueva_orden.__dict__)
     guardar_ordenes_json()
     print(f"Orden de trabajo {id_orden} creada con éxito.\n")
     
@@ -78,15 +82,15 @@ def modificar_orden_trabajo():
         print("Ingrese los nuevos datos (deje en blanco para no modificar):")
         cliente = input(f"Cliente ({orden['cliente']}): ") or orden["cliente"]
         descripcion = input(f"Descripción ({orden['descripcion']}): ") or orden["descripcion"]
-        fecha2 = input(f"Fecha de entrega ({orden['fecha2']}): ") or orden["fecha2"]
+        fecha_entrega = input(f"Fecha de entrega ({orden['fecha_entrega']}): ") or orden["fecha_entrega"]
         cantidad = input(f"Cantidad ({orden['cantidad']}): ") or orden["cantidad"]
-        obcervaciones = input(f"Observaciones ({orden['obcervaciones']}): ") or orden["obcervaciones"]
+        observaciones = input(f"Observaciones ({orden['observaciones']}): ") or orden["observaciones"]
         estado = input(f"Estado ({orden['estado']}): ") or orden["estado"]
         orden["cliente"] = cliente
         orden["descripcion"] = descripcion
-        orden["fecha2"] = fecha2
+        orden["fecha_entrega"] = fecha_entrega
         orden["cantidad"] = cantidad
-        orden["obcervaciones"] = obcervaciones
+        orden["observaciones"] = observaciones
         orden["estado"] = estado
         guardar_ordenes_json()
         print(f"Orden de trabajo {id_orden} modificada con éxito.\n")
