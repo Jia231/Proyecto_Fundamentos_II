@@ -3,6 +3,7 @@ import json
 import os
 import datetime
 from orden import Orden
+import utils as u 
 
 # Definir el nombre del archivo JSON
 ARCHIVO_ORDENES = "ordenes_trabajo.json"
@@ -39,37 +40,21 @@ def crear_orden_trabajo():
     else:
         id_orden = "1"
     print(f"ID de la nueva orden de trabajo: {id_orden}")
-    cliente = input("Ingrese el nombre del cliente: ")
-    fecha = input("Ingrese la fecha de creación (DD-MM-AAAA): ")
-    fecha_entrega = input("Ingrese la fecha de entrega (DD-MM-AAAA): ")
-    descripcion = input("Tipo de Producto: ")
-    medidas = input("Medidas: ")
-    cantidad = input("Cantidad: ")
-    diseñador = input("Nombre del diseñador: ")
-    impresora = input("Nombre de la impresora: ")
-    observaciones = input("Observaciones: ")
-    precio= float(input("Precio: "))
-    # estado = input("Ingrese el estado de la orden (Pendiente/Completada/Entregada): ")
-    # nueva_orden = {
-    #     "id_orden": id_orden,
-    #     "cliente": cliente,
-    #     "fecha": fecha,
-    #     "fecha_entrega": fecha_entrega,
-    #     "descripcion": descripcion,
-    #     "medidas": medidas,
-    #     "cantidad": cantidad,
-    #     "diseñador": diseñador,
-    #     "impresora": impresora,
-    #     "observaciones": observaciones,
-    #     "precio": precio,
-    #     "estado": estado      
-       
-    # }
+    cliente = u.ingresar_valor("Ingrese el nombre del cliente: ")
+    fecha = u.ingresar_valor("Ingrese la fecha de creación (DD-MM-AAAA): ")
+    fecha_entrega = u.ingresar_valor("Ingrese la fecha de entrega (DD-MM-AAAA): ")
+    descripcion = u.ingresar_valor("Tipo de Producto: ")
+    medidas = u.ingresar_valor("Medidas: ")
+    cantidad = u.ingresar_valor("Cantidad: ", False)
+    diseñador = u.ingresar_valor("Nombre del diseñador: ")
+    impresora = u.ingresar_valor("Nombre de la impresora: ")
+    observaciones = u.ingresar_valor("Observaciones: ")
+    precio= u.ingresar_valor("Precio: ", False)
     nueva_orden = Orden(id_orden, cliente, fecha, fecha_entrega, descripcion, medidas, 
                     cantidad, diseñador, impresora, observaciones, precio)
     guardar_orden.append(nueva_orden.__dict__)
     guardar_ordenes_json()
-    print(f"Orden de trabajo {id_orden} creada con éxito.\n")
+    print(f"Orden de trabajo {id_orden} creada con éxito.\n") 
     
     
 
@@ -139,7 +124,6 @@ def eliminar_orden_trabajo():
         print(f"Orden de trabajo {id_orden} eliminada con éxito.\n")
     else:
         print(f"No se encontró una orden de trabajo con ID {id_orden}.\n")
-
 
 
 
