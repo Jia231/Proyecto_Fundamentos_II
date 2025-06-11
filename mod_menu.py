@@ -157,7 +157,7 @@ def generar_reporte_ingresos_mes():
     print(f"Ingresos totales del mes {mes}: ${ingresos_mes:.2f}\n")
     
 def generar_reporte_uso_impresoras():
-    pass
+    
             
 
 
