@@ -40,5 +40,19 @@
         "obcervaciones": "troqueladas",
         "precio": "15000",
         "estado": "entregado"
+    },
+    {
+        "id_orden": "4",
+        "cliente": "jesus",
+        "fecha": "26-05-2025",
+        "fecha2": "2-06-2025",
+        "descripcion": "calcas",
+        "medidas": "10*10",
+        "cantidad": "100",
+        "diseñador": "ale",
+        "impresora": "azul",
+        "obcervaciones": "-",
+        "precio": "20000",
+        "estado": "entregado"
     }
 ]
