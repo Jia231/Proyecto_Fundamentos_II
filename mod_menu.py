@@ -147,7 +147,17 @@ def generar_reporte_ingresos_mes():
     print(f"Ingresos totales del mes {mes}: ${ingresos_mes:.2f}\n")
     
 def generar_reporte_uso_impresoras():
-    pass
+    print("Generar reporte de uso de impresoras")
+    impresoras = {}
+    for orden in guardar_orden:
+        impresora = orden["impresora"]
+        if impresora not in impresoras:
+            impresoras[impresora] = 0
+        impresoras[impresora] += 1
+    print("Uso de impresoras:")
+    for impresora, cantidad in impresoras.items():
+        print(f"Impresora: {impresora}, Órdenes: {cantidad}")
+    print()
 
 
 
