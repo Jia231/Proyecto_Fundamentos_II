@@ -26,7 +26,10 @@ def menu():
     print("2. Consultar una orden de trabajo")
     print("3. Modificar una orden de trabajo")
     print("4. Eliminar una orden de trabajo")
-    print("5. Salir")
+    print("5. Generar reporte de órdenes de trabajo del día")
+    print("6. Generar reporte de Ingresos del Mes")
+    print("7. Generar reporte de uso de impresoras")
+    print("8. Salir")
     opcion = input("Seleccione una opción:  ")
     return opcion
 
@@ -125,6 +128,26 @@ def eliminar_orden_trabajo():
     else:
         print(f"No se encontró una orden de trabajo con ID {id_orden}.\n")
 
+
+def generar_reporte_ordenes_dia():
+    print("Generar reporte de órdenes de trabajo del día")
+    fecha = input("Ingrese la fecha (DD-MM-AAAA): ")
+    ordenes_dia = [o for o in guardar_orden if o["fecha"] == fecha]
+    if ordenes_dia:
+        print(f"Órdenes de trabajo del día {fecha}:")
+        for orden in ordenes_dia:
+            print(f"ID: {orden['id_orden']}, Cliente: {orden['cliente']}, Descripción: {orden['descripcion']}, Estado: {orden['estado']}")
+    else:
+        print(f"No se encontraron órdenes de trabajo para la fecha {fecha}.\n")
+        
+def generar_reporte_ingresos_mes():
+    print("Generar reporte de Ingresos del Mes")
+    mes = input("Ingrese el mes (MM-AAAA): ")
+    ingresos_mes = sum(float(o["precio"]) for o in guardar_orden if o["fecha"].endswith(mes))
+    print(f"Ingresos totales del mes {mes}: ${ingresos_mes:.2f}\n")
+    
+def generar_reporte_uso_impresoras():
+    pass
 
 
 
