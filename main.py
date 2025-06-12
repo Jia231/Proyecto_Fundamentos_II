@@ -4,7 +4,7 @@
 #Descripción: Boletas de Ordenes de Trabajo
 #Version: 1.0
 
-from mod_menu import menu, crear_orden_trabajo, consultar_orden_trabajo, modificar_orden_trabajo, eliminar_orden_trabajo
+from mod_menu import menu, crear_orden_trabajo, consultar_orden_trabajo, modificar_orden_trabajo, eliminar_orden_trabajo, generar_reporte_ordenes_dia, generar_reporte_ingresos_mes, generar_reporte_uso_impresoras
 # import interface
 import tkinter as tk
 
@@ -34,6 +34,12 @@ if __name__ == "__main__":
             elif opcion == "4":
                 eliminar_orden_trabajo()
             elif opcion == "5":
+                generar_reporte_ordenes_dia()
+            elif opcion == "6":
+                generar_reporte_ingresos_mes()
+            elif opcion == "7":
+                generar_reporte_uso_impresoras()
+            elif opcion == "8":
                 print("Saliendo del programa...")
                 menu_principal = False
             else:
