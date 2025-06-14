@@ -4,18 +4,23 @@ def leer_clientes():
     return u.leer_archivo(u.NOMBRE_ARCHIVO_CLIENTES)
 
 
-def agregar_cliente(cedula, nombre_completo, telefono, correo, direccion = ""):
+def agregar_cliente():
     if u.existe_archivo(u.NOMBRE_ARCHIVO_CLIENTES) == False:
         u.crear_archivo(u.NOMBRE_ARCHIVO_CLIENTES, [])
 
     clientes = u.leer_archivo_cliente(u.NOMBRE_ARCHIVO_CLIENTES)
-
+# cedula, nombre_completo, telefono, correo, direccion = ""
+    cedula = u.ingresar_valor("Ingrese una cedula", False)
     if cedula:
         cedulas = list(map(lambda x: x['cedula'], clientes))
         if cedula in cedulas:
             print(f"Ya hay un cliente con la cedula {cedula}")
             return 
-
+    nombre_completo = u.ingresar_valor("Ingrese el nombre completo")    
+    telefono = u.ingresar_valor("Ingrese un telefono", False)  
+    correo = u.ingresar_valor("Ingrese un correo")
+    direccion = input("Ingrese una direccion")    
+                   
     cliente = {
             "cedula": cedula,
             "nombre_completo": nombre_completo,
@@ -29,7 +34,8 @@ def agregar_cliente(cedula, nombre_completo, telefono, correo, direccion = ""):
     print("Cliente guardado con exito")
 
 
-def editar_cliente(cedula):
+def editar_cliente():
+    cedula = u.ingresar_valor("Ingrese una cedula", False)
     if u.existe_archivo(u.NOMBRE_ARCHIVO_CLIENTES) == False:
          print("No se ha encontrado el archivo de clientes")
          return

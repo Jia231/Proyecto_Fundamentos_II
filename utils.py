@@ -4,7 +4,7 @@ import json
 
 NOMBRE_ARCHIVO_CLIENTES = "clientes.json"
 
-def ingresar_valor(prompt, esTexto = True):
+def ingresar_valor(prompt, esTexto = True, esFlotante=False):
     while True:
         try:
             if esTexto:
@@ -14,7 +14,7 @@ def ingresar_valor(prompt, esTexto = True):
                 else: 
                     return texto 
             else:
-                texto = float(input(prompt)) 
+                texto = int(input(prompt)) if esFlotante == False else float(input(prompt))  
                 return texto  
         except Exception:
             print("Ingrese un texto valido")

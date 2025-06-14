@@ -29,7 +29,9 @@ def menu():
     print("5. Generar reporte de órdenes de trabajo del día")
     print("6. Generar reporte de Ingresos del Mes")
     print("7. Generar reporte de uso de impresoras")
-    print("8. Salir")
+    print("8. Agregar cliente")
+    print("9. Editar cliente") 
+    print("10. Salir")
     opcion = input("Seleccione una opción:  ")
     return opcion
 
@@ -48,11 +50,11 @@ def crear_orden_trabajo():
     fecha_entrega = u.ingresar_valor("Ingrese la fecha de entrega (DD-MM-AAAA): ")
     descripcion = u.ingresar_valor("Tipo de Producto: ")
     medidas = u.ingresar_valor("Medidas: ")
-    cantidad = u.ingresar_valor("Cantidad: ", False)
+    cantidad = u.ingresar_valor("Cantidad: ", False, esFlotante=True)
     diseñador = u.ingresar_valor("Nombre del diseñador: ")
     impresora = u.ingresar_valor("Nombre de la impresora: ")
     observaciones = u.ingresar_valor("Observaciones: ")
-    precio= u.ingresar_valor("Precio: ", False)
+    precio= u.ingresar_valor("Precio: ", False, esFlotante=True)
     nueva_orden = Orden(id_orden, cliente, fecha, fecha_entrega, descripcion, medidas, 
                     cantidad, diseñador, impresora, observaciones, precio)
     guardar_orden.append(nueva_orden.__dict__)

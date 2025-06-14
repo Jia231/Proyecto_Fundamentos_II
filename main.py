@@ -7,6 +7,7 @@
 from mod_menu import menu, crear_orden_trabajo, consultar_orden_trabajo, modificar_orden_trabajo, eliminar_orden_trabajo, generar_reporte_ordenes_dia, generar_reporte_ingresos_mes, generar_reporte_uso_impresoras
 # import interface
 import tkinter as tk
+import cliente as cl 
 
 
 
@@ -40,6 +41,10 @@ if __name__ == "__main__":
             elif opcion == "7":
                 generar_reporte_uso_impresoras()
             elif opcion == "8":
+                cl.agregar_cliente()
+            elif opcion == "9":
+                cl.editar_cliente()                                
+            elif opcion == "10":
                 print("Saliendo del programa...")
                 menu_principal = False
             else:
