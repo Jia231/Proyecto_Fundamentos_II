@@ -21,17 +21,17 @@ def agregar_cliente():
 
     clientes = u.leer_archivo_cliente(u.NOMBRE_ARCHIVO_CLIENTES)
 # cedula, nombre_completo, telefono, correo, direccion = ""
-    cedula = u.ingresar_valor("Ingrese una cedula", False)
+    cedula = u.ingresar_valor("Ingrese una cedula: ", False)
     if cedula:
         cedulas = list(map(lambda x: x['cedula'], clientes))
         if cedula in cedulas:
             print(f"Ya hay un cliente con la cedula {cedula}")
             return 
-    nombre_completo = u.ingresar_valor("Ingrese el nombre completo")    
-    telefono = u.ingresar_valor("Ingrese un telefono", False)  
-    correo = u.ingresar_valor("Ingrese un correo")
-    direccion = input("Ingrese una direccion")    
-                   
+    nombre_completo = u.ingresar_valor("Ingrese el nombre completo: ")
+    telefono = u.ingresar_valor("Ingrese un telefono: ", False) 
+    correo = u.ingresar_valor("Ingrese un correo: ")
+    direccion = input("Ingrese una direccion: ")
+
     cliente = {
             "cedula": cedula,
             "nombre_completo": nombre_completo,
@@ -53,7 +53,7 @@ def editar_cliente():
             Filtra las cedulas existentes 
             Recibe los valores nuevos y despues los guarda en el archivo de clientes nuevamente
     """      
-    cedula = u.ingresar_valor("Ingrese una cedula", False)
+    cedula = u.ingresar_valor("Ingrese una cedula: ", False)
     if u.existe_archivo(u.NOMBRE_ARCHIVO_CLIENTES) == False:
          print("No se ha encontrado el archivo de clientes")
          return
@@ -85,7 +85,7 @@ def eliminar_cliente():
     """
         Esta funcion borra el cliente con la cedula aportada
     """          
-    cedula = u.ingresar_valor("Ingrese una cedula", False)
+    cedula = u.ingresar_valor("Ingrese una cedula: ", False)
     if u.existe_archivo(u.NOMBRE_ARCHIVO_CLIENTES) == False:
          print("No se ha encontrado el archivo de clientes")
          

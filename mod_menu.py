@@ -22,15 +22,15 @@ def guardar_ordenes_json():
         
 #Menu Principal
 def menu():
-    print("1. Crear una nueva orden de trabajo")
-    print("2. Consultar una orden de trabajo")
-    print("3. Modificar una orden de trabajo")
-    print("4. Eliminar una orden de trabajo")
-    print("5. Generar reporte de órdenes de trabajo del día")
-    print("6. Generar reporte de Ingresos del Mes")
-    print("7. Generar reporte de uso de impresoras")
-    print("8. Agregar cliente")
-    print("9. Editar cliente") 
+    print("1. Crear una nueva orden de trabajo: ")
+    print("2. Consultar una orden de trabajo: ")
+    print("3. Modificar una orden de trabajo: ")
+    print("4. Eliminar una orden de trabajo: ")
+    print("5. Generar reporte de órdenes de trabajo del día: ")
+    print("6. Generar reporte de Ingresos del Mes: ")
+    print("7. Generar reporte de uso de impresoras: ")
+    print("8. Agregar cliente: ")
+    print("9. Editar cliente: ")
     print("10. Salir")
     opcion = input("Seleccione una opción:  ")
     return opcion

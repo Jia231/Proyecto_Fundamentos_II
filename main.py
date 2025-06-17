@@ -13,8 +13,8 @@ import usuario as us
 # Definición de la función principal
 if __name__ == "__main__":
 
-    usuario = input("Introduzca el usuario")
-    password = input("Introduzca su contrasena")
+    usuario = input("Introduzca el usuario: ")
+    password = input("Introduzca su contrasena: ")
 
     usuario_validado = us.validar_usuario(usuario, password)
 
