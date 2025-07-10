@@ -54,3 +54,6 @@ def formatear_clientes(datos_clientes):
 
 def formatear_text(texto):
     print(f"*********{texto}*********")
+
+def limpiar_pantalla():
+     os.system('cls' if os.name == 'nt' else 'clear')    

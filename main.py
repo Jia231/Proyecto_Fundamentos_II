@@ -3,7 +3,7 @@
 #Fecha: 2025
 #Descripción: Boletas de Ordenes de Trabajo
 #Version: 1.0
-
+import os
 from mod_menu import menu, crear_orden_trabajo, consultar_orden_trabajo, modificar_orden_trabajo, eliminar_orden_trabajo, generar_reporte_ordenes_dia, generar_reporte_ingresos_mes, generar_reporte_uso_impresoras
 # import interface
 import tkinter as tk
@@ -14,11 +14,11 @@ import utils as u
 # Definición de la función principal
 if __name__ == "__main__":
     while True:
+        u.limpiar_pantalla()
         usuario = input("Introduzca el usuario: ")
         password = input("Introduzca su contrasena: ")
 
         usuario_validado = us.validar_usuario(usuario, password)
-
         if usuario_validado:
             # Elige entre interfaz gráfica o menú de consola
             modo = input("Selecciona modo (1: Interfaz gráfica, 2: Consola): ")
@@ -28,6 +28,7 @@ if __name__ == "__main__":
             elif modo == "2":
                 menu_principal = True
                 while menu_principal:
+                    u.limpiar_pantalla()
                     # Mostrar el menú
                     opcion = menu()
                     
