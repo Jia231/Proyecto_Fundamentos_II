@@ -51,3 +51,6 @@ def formatear_clientes(datos_clientes):
         clientes.append(cliente)
 
     return clientes        
+
+def formatear_text(texto):
+    print(f"*********{texto}*********")

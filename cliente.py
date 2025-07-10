@@ -25,7 +25,7 @@ def agregar_cliente():
     if cedula:
         cedulas = list(map(lambda x: x['cedula'], clientes))
         if cedula in cedulas:
-            print(f"Ya hay un cliente con la cedula {cedula}")
+            u.formatear_text(f"Ya hay un cliente con la cedula {cedula}")
             return 
     nombre_completo = u.ingresar_valor("Ingrese el nombre completo: ")
     telefono = u.ingresar_valor("Ingrese un telefono: ", False) 
@@ -42,7 +42,7 @@ def agregar_cliente():
     clientes.append(cliente)
     u.crear_archivo(u.NOMBRE_ARCHIVO_CLIENTES, clientes)
     
-    print("Cliente guardado con exito")
+    u.formatear_text("Cliente guardado con exito")
 
 
 def editar_cliente():
@@ -55,13 +55,13 @@ def editar_cliente():
     """      
     cedula = u.ingresar_valor("Ingrese una cedula: ", False)
     if u.existe_archivo(u.NOMBRE_ARCHIVO_CLIENTES) == False:
-         print("No se ha encontrado el archivo de clientes")
+         u.formatear_text("No se ha encontrado el archivo de clientes")
          return
      
     clientes = u.leer_archivo_cliente(u.NOMBRE_ARCHIVO_CLIENTES) 
     cliente_encontrado = [cliente for cliente in clientes if cliente["cedula"] == cedula]
     if len(cliente_encontrado) == 0:
-        print(f"No existe un cliente con la cedula {cedula}")
+        u.formatear_text(f"No existe un cliente con la cedula {cedula}")
         return
     cliente_encontrado = cliente_encontrado[0]
     nombre_completo = input(f"Nombre {cliente_encontrado["nombre_completo"]}") or cliente_encontrado["nombre_completo"]
@@ -79,7 +79,7 @@ def editar_cliente():
     }
     otros_clientes.append(cliente_editado)
     u.crear_archivo(u.NOMBRE_ARCHIVO_CLIENTES, otros_clientes)
-    print("Cliente editado con exito")
+    u.formatear_text("Cliente editado con exito")
 
 def eliminar_cliente():
     """
@@ -92,9 +92,9 @@ def eliminar_cliente():
     clientes = u.leer_archivo_cliente(u.NOMBRE_ARCHIVO_CLIENTES)
     cliente_encontrado = [cliente for cliente in clientes if cliente["cedula"] == cedula] 
     if len(cliente_encontrado) == 0:
-        print(f"Cliente con {cedula} no encontrado")
+        u.formatear_text(f"Cliente con {cedula} no encontrado")
         return
     
     otros_clientes = [cliente for cliente in clientes if cliente["cedula"] != cedula]
     u.crear_archivo(u.NOMBRE_ARCHIVO_CLIENTES, otros_clientes)
-    print(f"Cliente con {cedula}, removido con exito")
+    u.formatear_text(f"Cliente con {cedula}, removido con exito")

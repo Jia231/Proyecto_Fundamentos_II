@@ -59,7 +59,7 @@ def crear_orden_trabajo():
                     cantidad, diseñador, impresora, observaciones, precio)
     guardar_orden.append(nueva_orden.__dict__)
     guardar_ordenes_json()
-    print(f"Orden de trabajo {id_orden} creada con éxito.\n") 
+    u.formatear_text(f"Orden de trabajo {id_orden} creada con éxito.\n")
     
     
 
@@ -83,10 +83,9 @@ def modificar_orden_trabajo():
         orden["observaciones"] = observaciones
         orden["estado"] = estado
         guardar_ordenes_json()
-        print(f"Orden de trabajo {id_orden} modificada con éxito.\n")
+        u.formatear_text(f"Orden de trabajo {id_orden} modificada con éxito.\n")
     else:
-        print(f"No se encontró una orden de trabajo con ID {id_orden}.\n")
-        
+        u.formatear_text(f"No se encontró una orden de trabajo con ID {id_orden}.\n")        
         
         
 def consultar_orden_trabajo():
@@ -107,15 +106,15 @@ def consultar_orden_trabajo():
             ordenes = [o for o in guardar_orden if o["fecha"] == fecha]
             if ordenes:
                 for orden in ordenes:
-                    print(f"Orden de trabajo encontrada: {orden}\n")
+                    u.formatear_text(f"Orden de trabajo encontrada: {orden}\n")
                 break
             else:
-                print(f"No se encontró una orden de trabajo con la fecha {fecha}. Intente de nuevo.")
+                u.formatear_text(f"No se encontró una orden de trabajo con la fecha {fecha}. Intente de nuevo.")
         elif criterio == "3":
-            print("Volviendo al menú principal...\n")
+            u.formatear_text("Volviendo al menú principal...\n")
             break
         else:
-            print("Opción no válida. Intente de nuevo.\n")
+            u.formatear_text("Opción no válida. Intente de nuevo.\n")
 
 
 
@@ -126,9 +125,9 @@ def eliminar_orden_trabajo():
     if orden:
         guardar_orden.remove(orden)
         guardar_ordenes_json()
-        print(f"Orden de trabajo {id_orden} eliminada con éxito.\n")
+        u.formatear_text(f"Orden de trabajo {id_orden} eliminada con éxito.\n")
     else:
-        print(f"No se encontró una orden de trabajo con ID {id_orden}.\n")
+        u.formatear_text(f"No se encontró una orden de trabajo con ID {id_orden}.\n")
 
 
 def generar_reporte_ordenes_dia():
@@ -140,13 +139,13 @@ def generar_reporte_ordenes_dia():
         for orden in ordenes_dia:
             print(f"ID: {orden['id_orden']}, Cliente: {orden['cliente']}, Descripción: {orden['descripcion']}, Estado: {orden['estado']}")
     else:
-        print(f"No se encontraron órdenes de trabajo para la fecha {fecha}.\n")
+        u.formatear_text(f"No se encontraron órdenes de trabajo para la fecha {fecha}.\n")
         
 def generar_reporte_ingresos_mes():
     print("Generar reporte de Ingresos del Mes")
     mes = input("Ingrese el mes (MM-AAAA): ")
     ingresos_mes = sum(float(o["precio"]) for o in guardar_orden if o["fecha"].endswith(mes))
-    print(f"Ingresos totales del mes {mes}: ${ingresos_mes:.2f}\n")
+    u.formatear_text(f"Ingresos totales del mes {mes}: ${ingresos_mes:.2f}\n")
     
 def generar_reporte_uso_impresoras():
     print("Generar reporte de uso de impresoras")
@@ -159,7 +158,6 @@ def generar_reporte_uso_impresoras():
     print("Uso de impresoras:")
     for impresora, cantidad in impresoras.items():
         print(f"Impresora: {impresora}, Órdenes: {cantidad}")
-    print()
 
 
 

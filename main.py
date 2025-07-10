@@ -9,6 +9,7 @@ from mod_menu import menu, crear_orden_trabajo, consultar_orden_trabajo, modific
 import tkinter as tk
 import cliente as cl 
 import usuario as us
+import utils as u
 
 # Definición de la función principal
 if __name__ == "__main__":
@@ -50,17 +51,17 @@ if __name__ == "__main__":
                     elif opcion == "9":
                         cl.editar_cliente()                                
                     elif opcion == "10":
-                        print("Cerrando sesión...\n")
+                        u.formatear_text("Cerrando sesión...\n")
                         menu_principal = False
                     else:
-                        print("Opción no válida. Intente de nuevo.")
+                        u.formatear_text("Opción no válida. Intente de nuevo.")
                 # Al cerrar sesión, vuelve a solicitar usuario
                 continue
             else:
-                print("Modo no válido. Intente de nuevo.\n")
+                u.formatear_text("Modo no válido. Intente de nuevo.\n")
                 continue
         else:
-            print("Usuario o contrasena incorrecto\n") 
+            u.formatear_text("Usuario o contrasena incorrecto\n")
             
 
 
