@@ -56,4 +56,6 @@ def formatear_text(texto):
     print(f"*********{texto}*********")
 
 def limpiar_pantalla():
-     os.system('cls' if os.name == 'nt' else 'clear')    
+    input("Presione Enter para continuar...")
+    # Limpiar la pantalla
+    os.system('cls' if os.name == 'nt' else 'clear')    
