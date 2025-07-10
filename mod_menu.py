@@ -31,7 +31,7 @@ def menu():
     print("7. Generar reporte de uso de impresoras: ")
     print("8. Agregar cliente: ")
     print("9. Editar cliente: ")
-    print("10. Salir")
+    print("10. Cerrar sesión: ")
     opcion = input("Seleccione una opción:  ")
     return opcion
 

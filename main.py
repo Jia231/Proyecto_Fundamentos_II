@@ -12,7 +12,6 @@ import usuario as us
 
 # Definición de la función principal
 if __name__ == "__main__":
-    
     while True:
         usuario = input("Introduzca el usuario: ")
         password = input("Introduzca su contrasena: ")
@@ -25,7 +24,6 @@ if __name__ == "__main__":
             if modo == "1":
                 # interfase.interfaz()
                 pass
-                break
             elif modo == "2":
                 menu_principal = True
                 while menu_principal:
@@ -52,16 +50,17 @@ if __name__ == "__main__":
                     elif opcion == "9":
                         cl.editar_cliente()                                
                     elif opcion == "10":
-                        print("Saliendo del programa...")
+                        print("Cerrando sesión...\n")
                         menu_principal = False
                     else:
                         print("Opción no válida. Intente de nuevo.")
-                break
+                # Al cerrar sesión, vuelve a solicitar usuario
+                continue
             else:
-                print("Modo no válido. Saliendo del programa.")
-                break
+                print("Modo no válido. Intente de nuevo.\n")
+                continue
         else:
-            print("Usuario o contasena incorrecto")        
+            print("Usuario o contrasena incorrecto\n") 
             
 
 
