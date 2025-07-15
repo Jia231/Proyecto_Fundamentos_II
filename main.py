@@ -5,7 +5,7 @@
 #Version: 1.0
 import os
 from mod_menu import menu, crear_orden_trabajo, consultar_orden_trabajo, modificar_orden_trabajo, eliminar_orden_trabajo, generar_reporte_ordenes_dia, generar_reporte_ingresos_mes, generar_reporte_uso_impresoras
-# import interface
+import mod_interfase as mi
 import tkinter as tk
 import cliente as cl 
 import usuario as us
@@ -23,8 +23,8 @@ if __name__ == "__main__":
             # Elige entre interfaz gráfica o menú de consola
             modo = input("Selecciona modo (1: Interfaz gráfica, 2: Consola): ")
             if modo == "1":
-                # interfase.interfaz()
-                pass
+                mi.interfaz_ordenes_trabajo()
+                
             elif modo == "2":
                 menu_principal = True
                 while menu_principal:
