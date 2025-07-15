@@ -80,7 +80,7 @@ def interfaz_ordenes_trabajo():
 
     def modificar():
         id_orden = simpledialog.askstring("Modificar", "Ingrese el ID de la orden:")
-        orden = next((o for o in guardar_orden if o["id_orden"] == id_orden), None)
+        orden = next((o for o in guardar_orden if int(o["id_orden"]) == int(id_orden)), None)
         if orden:
             cliente = simpledialog.askstring("Cliente", f"Cliente ({orden['cliente']}):") or orden["cliente"]
             descripcion = simpledialog.askstring("Descripción", f"Descripción ({orden['descripcion']}):") or orden["descripcion"]
@@ -197,7 +197,7 @@ def interfaz_ordenes_trabajo():
     def editar_cliente():
         cedula = simpledialog.askstring("Editar Cliente", "Ingrese la cédula del cliente a editar:")
         clientes = u.leer_archivo_cliente(u.NOMBRE_ARCHIVO_CLIENTES)
-        cliente = next((c for c in clientes if c.get("cedula") == int(cedula)), None)
+        cliente = next((c for c in clientes if int(c.get("cedula")) == int(cedula)), None)
         if not cliente:
             messagebox.showwarning("Error", "No se encontró el cliente.")
             return

@@ -66,7 +66,7 @@ def crear_orden_trabajo():
 def modificar_orden_trabajo():
     print("Modificar una orden de trabajo")
     id_orden = input("Ingrese el ID de la orden de trabajo: ")
-    orden = next((o for o in guardar_orden if o["id_orden"] == id_orden), None)
+    orden = next((o for o in guardar_orden if int(o["id_orden"]) == int(id_orden)), None)
     if orden:
         print(f"Orden de trabajo encontrada: {orden}")
         print("Ingrese los nuevos datos (deje en blanco para no modificar):")
