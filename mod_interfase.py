@@ -134,7 +134,7 @@ def interfaz_ordenes_trabajo():
         messagebox.showinfo("Uso Impresoras", resultado)
         
     def agregar_cliente():
-        if u.existe_archivo(u.NOMBRE_ARCHIVO_CLIENTES):
+        if not u.existe_archivo(u.NOMBRE_ARCHIVO_CLIENTES):
             u.crear_archivo(u.NOMBRE_ARCHIVO_CLIENTES, [])
 
         clientes = u.leer_archivo_cliente(u.NOMBRE_ARCHIVO_CLIENTES)
@@ -184,7 +184,7 @@ def interfaz_ordenes_trabajo():
             break
 
         cliente = {
-            "cedula": cedula,
+            "cedula": int(cedula),
             "nombre_completo": nombre_completo,
             "telefono": telefono,
             "correo": correo,
@@ -197,7 +197,7 @@ def interfaz_ordenes_trabajo():
     def editar_cliente():
         cedula = simpledialog.askstring("Editar Cliente", "Ingrese la cédula del cliente a editar:")
         clientes = u.leer_archivo_cliente(u.NOMBRE_ARCHIVO_CLIENTES)
-        cliente = next((c for c in clientes if c.get("cedula") == cedula), None)
+        cliente = next((c for c in clientes if c.get("cedula") == int(cedula)), None)
         if not cliente:
             messagebox.showwarning("Error", "No se encontró el cliente.")
             return
