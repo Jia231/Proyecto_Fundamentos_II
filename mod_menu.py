@@ -31,12 +31,14 @@ def menu():
     print("7. Generar reporte de uso de impresoras: ")
     print("8. Agregar cliente: ")
     print("9. Editar cliente: ")
-    print("10. Cerrar sesión: ")
+    print("10. Eliminar cliente: ")
+    print("11. Cerrar sesión: ")
     opcion = input("Seleccione una opción:  ")
     return opcion
 
 
 def crear_orden_trabajo():
+    u.limpiar_pantalla()
     print("Crear una nueva orden de trabajo")
     # Generar un ID consecutivo automáticamente
     if guardar_orden:
@@ -64,6 +66,7 @@ def crear_orden_trabajo():
     
 
 def modificar_orden_trabajo():
+    u.limpiar_pantalla()
     print("Modificar una orden de trabajo")
     id_orden = input("Ingrese el ID de la orden de trabajo: ")
     orden = next((o for o in guardar_orden if int(o["id_orden"]) == int(id_orden)), None)
@@ -89,6 +92,7 @@ def modificar_orden_trabajo():
         
         
 def consultar_orden_trabajo():
+    u.limpiar_pantalla()
     print("Consultar una orden de trabajo")
     while True:
         criterio = input("¿Desea buscar por nombre de cliente (1), por fecha (2) o (3) para volver al menú principal: ")
@@ -119,6 +123,7 @@ def consultar_orden_trabajo():
 
 
 def eliminar_orden_trabajo():
+    u.limpiar_pantalla()
     print("Eliminar una orden de trabajo")
     id_orden = input("Ingrese el ID de la orden de trabajo: ")
     orden = next((o for o in guardar_orden if o["id_orden"] == id_orden), None)
@@ -131,6 +136,7 @@ def eliminar_orden_trabajo():
 
 
 def generar_reporte_ordenes_dia():
+    u.limpiar_pantalla()
     print("Generar reporte de órdenes de trabajo del día")
     fecha = input("Ingrese la fecha (DD-MM-AAAA): ")
     ordenes_dia = [o for o in guardar_orden if o["fecha"] == fecha]
@@ -142,12 +148,14 @@ def generar_reporte_ordenes_dia():
         u.formatear_text(f"No se encontraron órdenes de trabajo para la fecha {fecha}.\n")
         
 def generar_reporte_ingresos_mes():
+    u.limpiar_pantalla()
     print("Generar reporte de Ingresos del Mes")
     mes = input("Ingrese el mes (MM-AAAA): ")
     ingresos_mes = sum(float(o["precio"]) for o in guardar_orden if o["fecha"].endswith(mes))
     u.formatear_text(f"Ingresos totales del mes {mes}: ${ingresos_mes:.2f}\n")
     
 def generar_reporte_uso_impresoras():
+    u.limpiar_pantalla()
     print("Generar reporte de uso de impresoras")
     impresoras = {}
     for orden in guardar_orden:

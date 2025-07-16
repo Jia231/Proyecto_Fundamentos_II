@@ -4,13 +4,16 @@ from tkinter.simpledialog import askstring
 import json
 import os
 import utils as u
+import usuario as us
+
 
 
 def resize_last_dialog(width=350, height=180):
-    # The dialog is a Toplevel – it's the last child of root
+    
     w = root.winfo_children()[-1]
     if isinstance(w, tk.Toplevel):
         w.geometry(f"{width}x{height}")
+        
 
 def my_askstring(title, prompt):
     root.after(20, resize_last_dialog, 400, 150)
@@ -36,8 +39,16 @@ guardar_orden = cargar_ordenes()
 def guardar_ordenes_json():
     with open(ORDENES_FILE, "w", encoding="utf-8") as f:
         json.dump(guardar_orden, f, ensure_ascii=False, indent=4)
-
+    
 def interfaz_ordenes_trabajo():
+    def usuario_autenticado():
+        usuario = my_askstring("Usuario", "Introduzca el usuario:")
+        password = my_askstring("Contraseña", "Introduzca la contraseña:")
+        return us.validar_usuario(usuario, password)
+    if not usuario_autenticado():
+        messagebox.showerror("Error", "Usuario o contraseña incorrectos.")
+        return
+    
     def crear():
         cliente = my_askstring("Cliente", "Ingrese el nombre del cliente:")
         fecha = my_askstring("Fecha", "Ingrese la fecha de creación (DD-MM-AAAA):")
@@ -270,7 +281,7 @@ def interfaz_ordenes_trabajo():
     tk.Button(frame, text="Editar Cliente", command=editar_cliente, width=30).pack(pady=5)
     tk.Button(frame, text="Eliminar Cliente", command=eliminar_cliente, width=30).pack(pady=5)    
     tk.Button(frame, text="Salir", command=root.destroy, width=30).pack(pady=5)
-    tk
+    
 
     root.mainloop()
     

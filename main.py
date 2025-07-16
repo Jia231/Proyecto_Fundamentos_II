@@ -10,13 +10,14 @@ import tkinter as tk
 import cliente as cl 
 import usuario as us
 import utils as u
+import maskpass as ma
 
 # Definición de la función principal
 if __name__ == "__main__":
     while True:
         u.limpiar_pantalla()
         usuario = input("Introduzca el usuario: ")
-        password = input("Introduzca su contrasena: ")
+        password = ma.askpass(prompt="Introduzca la contraseña: ", mask="*")
 
         usuario_validado = us.validar_usuario(usuario, password)
         if usuario_validado:
@@ -50,8 +51,10 @@ if __name__ == "__main__":
                     elif opcion == "8":
                         cl.agregar_cliente()
                     elif opcion == "9":
-                        cl.editar_cliente()                                
+                        cl.editar_cliente() 
                     elif opcion == "10":
+                        cl.eliminar_cliente()
+                    elif opcion == "11":
                         u.formatear_text("Cerrando sesión...\n")
                         menu_principal = False
                     else:

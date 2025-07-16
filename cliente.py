@@ -15,7 +15,8 @@ def agregar_cliente():
             Si existe archivo lee archivo de clientes
             Recibe numero de cedula y valida si ya existe un usuario con esa cedula
             En caso de no existir recibe los valores faltantes del cliente y escribe sobre el archivo de cliente
-    """        
+    """  
+    u.limpiar_pantalla()
     if u.existe_archivo(u.NOMBRE_ARCHIVO_CLIENTES) == False:
         u.crear_archivo(u.NOMBRE_ARCHIVO_CLIENTES, [])
 
@@ -52,7 +53,8 @@ def editar_cliente():
             Lee el archivo del cliente
             Filtra las cedulas existentes 
             Recibe los valores nuevos y despues los guarda en el archivo de clientes nuevamente
-    """      
+    """ 
+    u.limpiar_pantalla()     
     cedula = u.ingresar_valor("Ingrese una cedula: ", False)
     if u.existe_archivo(u.NOMBRE_ARCHIVO_CLIENTES) == False:
          u.formatear_text("No se ha encontrado el archivo de clientes")
