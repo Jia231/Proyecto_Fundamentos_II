@@ -1,8 +1,23 @@
 import tkinter as tk
-from tkinter import messagebox, simpledialog
+from tkinter import messagebox
+from tkinter.simpledialog import askstring
 import json
 import os
 import utils as u
+
+
+def resize_last_dialog(width=350, height=180):
+    # The dialog is a Toplevel – it's the last child of root
+    w = root.winfo_children()[-1]
+    if isinstance(w, tk.Toplevel):
+        w.geometry(f"{width}x{height}")
+
+def my_askstring(title, prompt):
+    root.after(20, resize_last_dialog, 400, 150)
+    return askstring(title, f"{prompt}\t\t\t\t", parent=root)
+
+root = tk.Tk()
+root.withdraw()
 
 ORDENES_FILE = "ordenes_trabajo.json"
 
@@ -24,17 +39,17 @@ def guardar_ordenes_json():
 
 def interfaz_ordenes_trabajo():
     def crear():
-        cliente = simpledialog.askstring("Cliente", "Ingrese el nombre del cliente:")
-        fecha = simpledialog.askstring("Fecha", "Ingrese la fecha de creación (DD-MM-AAAA):")
-        fecha_entrega = simpledialog.askstring("Fecha Entrega", "Ingrese la fecha de entrega (DD-MM-AAAA):")
-        descripcion = simpledialog.askstring("Descripción", "Tipo de Producto:")
-        medidas = simpledialog.askstring("Medidas", "Medidas:")
-        cantidad = simpledialog.askstring("Cantidad", "Cantidad:")
-        diseñador = simpledialog.askstring("Diseñador", "Nombre del diseñador:")
-        impresora = simpledialog.askstring("Impresora", "Nombre de la impresora:")
-        obcervaciones = simpledialog.askstring("Observaciones", "Observaciones:")
-        precio = simpledialog.askstring("Precio", "Precio:")
-        estado = simpledialog.askstring("Estado", "Estado (Pendiente/Completada/Entregada):")
+        cliente = my_askstring("Cliente", "Ingrese el nombre del cliente:")
+        fecha = my_askstring("Fecha", "Ingrese la fecha de creación (DD-MM-AAAA):")
+        fecha_entrega = my_askstring("Fecha Entrega", "Ingrese la fecha de entrega (DD-MM-AAAA):")
+        descripcion = my_askstring("Descripción", "Tipo de Producto:")
+        medidas = my_askstring("Medidas", "Medidas:")
+        cantidad = my_askstring("Cantidad", "Cantidad:")
+        diseñador = my_askstring("Diseñador", "Nombre del diseñador:")
+        impresora = my_askstring("Impresora", "Nombre de la impresora:")
+        obcervaciones = my_askstring("Observaciones", "Observaciones:")
+        precio = my_askstring("Precio", "Precio:")
+        estado = my_askstring("Estado", "Estado (Pendiente/Completada/Entregada):")
         if cliente and fecha:
             # Generar ID
             if guardar_orden:
@@ -63,12 +78,12 @@ def interfaz_ordenes_trabajo():
             messagebox.showwarning("Error", "Datos insuficientes.")
 
     def consultar():
-        criterio = simpledialog.askstring("Buscar", "Buscar por cliente (1) o fecha (2):")
+        criterio = my_askstring("Buscar", "Buscar por cliente (1) o fecha (2):")
         if criterio == "1":
-            cliente = simpledialog.askstring("Cliente", "Ingrese el nombre del cliente:")
+            cliente = my_askstring("Cliente", "Ingrese el nombre del cliente:")
             ordenes = [o for o in guardar_orden if o["cliente"].lower() == cliente.lower()]
         elif criterio == "2":
-            fecha = simpledialog.askstring("Fecha", "Ingrese la fecha (DD-MM-AAAA):")
+            fecha = my_askstring("Fecha", "Ingrese la fecha (DD-MM-AAAA):")
             ordenes = [o for o in guardar_orden if o["fecha"] == fecha]
         else:
             ordenes = []
@@ -79,15 +94,15 @@ def interfaz_ordenes_trabajo():
             messagebox.showinfo("Resultados", "No se encontraron órdenes.")
 
     def modificar():
-        id_orden = simpledialog.askstring("Modificar", "Ingrese el ID de la orden:")
+        id_orden = my_askstring("Modificar", "Ingrese el ID de la orden:")
         orden = next((o for o in guardar_orden if int(o["id_orden"]) == int(id_orden)), None)
         if orden:
-            cliente = simpledialog.askstring("Cliente", f"Cliente ({orden['cliente']}):") or orden["cliente"]
-            descripcion = simpledialog.askstring("Descripción", f"Descripción ({orden['descripcion']}):") or orden["descripcion"]
-            fecha_entrega = simpledialog.askstring("Fecha Entrega", f"Fecha de entrega ({orden['fecha de entrega']}):") or orden["fecha de entrega"]
-            cantidad = simpledialog.askstring("Cantidad", f"Cantidad ({orden['cantidad']}):") or orden["cantidad"]
-            obcervaciones = simpledialog.askstring("Observaciones", f"Observaciones ({orden['obcervaciones']}):") or orden["obcervaciones"]
-            estado = simpledialog.askstring("Estado", f"Estado ({orden['estado']}):") or orden["estado"]
+            cliente = my_askstring("Cliente", f"Cliente ({orden['cliente']}):") or orden["cliente"]
+            descripcion = my_askstring("Descripción", f"Descripción ({orden['descripcion']}):") or orden["descripcion"]
+            fecha_entrega = my_askstring("Fecha Entrega", f"Fecha de entrega ({orden['fecha de entrega']}):") or orden["fecha de entrega"]
+            cantidad = my_askstring("Cantidad", f"Cantidad ({orden['cantidad']}):") or orden["cantidad"]
+            obcervaciones = my_askstring("Observaciones", f"Observaciones ({orden['obcervaciones']}):") or orden["obcervaciones"]
+            estado = my_askstring("Estado", f"Estado ({orden['estado']}):") or orden["estado"]
             orden["cliente"] = cliente
             orden["descripcion"] = descripcion
             orden["fecha de entrega"] = fecha_entrega
@@ -100,7 +115,7 @@ def interfaz_ordenes_trabajo():
             messagebox.showwarning("Error", "No se encontró la orden.")
 
     def eliminar():
-        id_orden = simpledialog.askstring("Eliminar", "Ingrese el ID de la orden:")
+        id_orden = my_askstring("Eliminar", "Ingrese el ID de la orden:")
         orden = next((o for o in guardar_orden if o["id_orden"] == id_orden), None)
         if orden:
             guardar_orden.remove(orden)
@@ -110,7 +125,7 @@ def interfaz_ordenes_trabajo():
             messagebox.showwarning("Error", "No se encontró la orden.")
 
     def reporte_dia():
-        fecha = simpledialog.askstring("Reporte Día", "Ingrese la fecha (DD-MM-AAAA):")
+        fecha = my_askstring("Reporte Día", "Ingrese la fecha (DD-MM-AAAA):")
         ordenes_dia = [o for o in guardar_orden if o["fecha"] == fecha]
         if ordenes_dia:
             resultado = "\n".join([f"ID: {o['id_orden']}, Cliente: {o['cliente']}, Desc: {o['descripcion']}, Estado: {o['estado']}" for o in ordenes_dia])
@@ -119,7 +134,7 @@ def interfaz_ordenes_trabajo():
             messagebox.showinfo("Reporte", "No hay órdenes para esa fecha.")
 
     def reporte_mes():
-        mes = simpledialog.askstring("Reporte Mes", "Ingrese el mes (MM-AAAA):")
+        mes = my_askstring("Reporte Mes", "Ingrese el mes (MM-AAAA):")
         ingresos_mes = sum(float(o["precio"]) for o in guardar_orden if o["fecha"].endswith(mes))
         messagebox.showinfo("Ingresos", f"Ingresos totales del mes {mes}: ${ingresos_mes:.2f}")
         
@@ -142,7 +157,7 @@ def interfaz_ordenes_trabajo():
 
         # Solicitar cédula válida 
         while True:
-            cedula = simpledialog.askstring("Agregar Cliente", "Ingrese la cédula del cliente:")
+            cedula = my_askstring("Agregar Cliente", "Ingrese la cédula del cliente:")
             if not cedula or not cedula.strip():
                 messagebox.showwarning("Error", "Debe ingresar una cédula válida.")
                 continue
@@ -153,7 +168,7 @@ def interfaz_ordenes_trabajo():
 
         # Solicitar nombre completo válido
         while True:
-            nombre_completo = simpledialog.askstring("Agregar Cliente", "Ingrese el nombre completo:") or ""
+            nombre_completo = my_askstring("Agregar Cliente", "Ingrese el nombre completo:") or ""
             if not nombre_completo.strip():
                 messagebox.showwarning("Error", "Debe ingresar un nombre completo válido.")
                 continue
@@ -161,7 +176,7 @@ def interfaz_ordenes_trabajo():
 
         # Solicitar teléfono válido
         while True:
-            telefono = simpledialog.askstring("Agregar Cliente", "Ingrese un teléfono (8 dígitos):") or ""
+            telefono = my_askstring("Agregar Cliente", "Ingrese un teléfono (8 dígitos):") or ""
             if not (telefono.isdigit() and len(telefono) == 8):
                 messagebox.showwarning("Error", "Debe ingresar un teléfono válido de 8 dígitos.")
                 continue
@@ -169,7 +184,7 @@ def interfaz_ordenes_trabajo():
 
         # Solicitar correo válido
         while True:
-            correo = simpledialog.askstring("Agregar Cliente", "Ingrese un correo:") or ""
+            correo = my_askstring("Agregar Cliente", "Ingrese un correo:") or ""
             if not correo.strip():
                 messagebox.showwarning("Error", "Debe ingresar un correo válido.")
                 continue
@@ -177,7 +192,7 @@ def interfaz_ordenes_trabajo():
 
         # Solicitar dirección válida
         while True:
-            direccion = simpledialog.askstring("Agregar Cliente", "Ingrese una dirección:") or ""
+            direccion = my_askstring("Agregar Cliente", "Ingrese una dirección:") or ""
             if not direccion.strip():
                 messagebox.showwarning("Error", "Debe ingresar una dirección válida.")
                 continue
@@ -195,17 +210,17 @@ def interfaz_ordenes_trabajo():
         messagebox.showinfo("Éxito", "Cliente guardado con éxito")
 
     def editar_cliente():
-        cedula = simpledialog.askstring("Editar Cliente", "Ingrese la cédula del cliente a editar:")
+        cedula = my_askstring("Editar Cliente", "Ingrese la cédula del cliente a editar:")
         clientes = u.leer_archivo_cliente(u.NOMBRE_ARCHIVO_CLIENTES)
         cliente = next((c for c in clientes if int(c.get("cedula")) == int(cedula)), None)
         if not cliente:
             messagebox.showwarning("Error", "No se encontró el cliente.")
             return
 
-        nombre_completo = simpledialog.askstring("Editar Cliente", f"Nombre completo ({cliente['nombre_completo']}):") or cliente["nombre_completo"]
-        telefono = simpledialog.askstring("Editar Cliente", f"Teléfono ({cliente['telefono']}):") or cliente["telefono"]
-        correo = simpledialog.askstring("Editar Cliente", f"Correo ({cliente['correo']}):") or cliente["correo"]
-        direccion = simpledialog.askstring("Editar Cliente", f"Dirección ({cliente['direccion']}):") or cliente["direccion"]
+        nombre_completo = my_askstring("Editar Cliente", f"Nombre completo ({cliente['nombre_completo']}):") or cliente["nombre_completo"]
+        telefono = my_askstring("Editar Cliente", f"Teléfono ({cliente['telefono']}):") or cliente["telefono"]
+        correo = my_askstring("Editar Cliente", f"Correo ({cliente['correo']}):") or cliente["correo"]
+        direccion = my_askstring("Editar Cliente", f"Dirección ({cliente['direccion']}):") or cliente["direccion"]
 
         cliente_editado = {
             "cedula": cedula,
@@ -222,7 +237,7 @@ def interfaz_ordenes_trabajo():
         messagebox.showinfo("Éxito", "Cliente editado con éxito")
 
     def eliminar_cliente():
-        cedula = simpledialog.askstring("Eliminar Cliente", "Ingrese la cédula del cliente a eliminar:")
+        cedula = my_askstring("Eliminar Cliente", "Ingrese la cédula del cliente a eliminar:")
         clientes = u.leer_archivo_cliente(u.NOMBRE_ARCHIVO_CLIENTES)
         cliente = next((c for c in clientes if c.get("cedula") == cedula), None)
         if not cliente:
