@@ -1,1 +1,30 @@
-[]
+[
+    {
+        "id_orden": "1",
+        "cliente": "cristopher fernandez",
+        "fecha": "1-08-2025",
+        "fecha de entrega": "10-08-2025",
+        "descripcion": "Lona",
+        "medidas": "3m x 5m",
+        "cantidad": "1",
+        "diseñador": "Alejandra",
+        "impresora": "Azul",
+        "obcervaciones": "rivete y ojetes",
+        "precio": "68000",
+        "estado": "entregado"
+    },
+    {
+        "id_orden": "2",
+        "cliente": "Juanito Camelas",
+        "fecha": "15-08-2025",
+        "fecha_entrega": "25-08-2025",
+        "descripcion": "calacas",
+        "medidas": "10cm x 10cm",
+        "cantidad": 50.0,
+        "diseñador": "Oliver",
+        "impresora": "Azul",
+        "observaciones": "troqueladas",
+        "precio": 35000.0,
+        "estado": "pendiente"
+    }
+]
