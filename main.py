@@ -1,7 +1,7 @@
 """Proyecto final Desarrollo de Software"""
 #Autores: Jesús Villalobos Murillo, Jia Ming Liu
 #Fecha: 2025
-#Descripción: Boletas de Ordenes de Trabajo
+#Descripción: Boletas de Ordenes de Trabajo Etnia Diseño
 #Version: 1.0
 import os
 from mod_menu import menu, crear_orden_trabajo, consultar_orden_trabajo, modificar_orden_trabajo, eliminar_orden_trabajo, generar_reporte_ordenes_dia, generar_reporte_ingresos_mes, generar_reporte_uso_impresoras
