@@ -26,5 +26,19 @@
         "observaciones": "troqueladas",
         "precio": 35000.0,
         "estado": "pendiente"
+    },
+    {
+        "id_orden": "3",
+        "cliente": "Adrian Valenciano",
+        "fecha": "15/08/2025",
+        "fecha de entrega": "25-08-2025",
+        "descripcion": "calcas",
+        "medidas": "10*10",
+        "cantidad": "50",
+        "diseñador": "",
+        "impresora": "",
+        "obcervaciones": "",
+        "precio": "",
+        "estado": ""
     }
 ]
